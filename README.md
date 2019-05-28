@@ -1,1 +1,1 @@
-# CapSlide
+# Capston Slide Show
