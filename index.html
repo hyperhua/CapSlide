@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predict a Next Word</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Predict a Next Word">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
 
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Predict a Next Word</h1>
+    <h2>based on 3-gram database</h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Goal</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Goal: Give a next word suggestion based on your typing </li>
+<li>This is a simplified version: generated based on 0.1% corpus samples </li>
+<li>With 3-gram and 2-gram database searching</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Notations</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Suppose you typed in a sequence of words (that is: (n-1) word-sequencing)</li>
+<li>Typed in words were noted as: w<em>1, w_2, ... , w</em>(n-1) </li>
+<li>We would like to determine which is the word w_n, where w_n had the highest probability</li>
+</ol>
+
+<p>P(w<em>n|w</em>(n-1), w_(n-2), ... , w_2, w_1) </p>
+
+<p>across choices of w_n.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Unsmoothed N-gram model</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>A note that, in the Quiz 2 &amp; 3, the word w_n is pick-a-winner from a list of four choices</li>
+<li>However, in this shiny app, the word w_n is a free text choice, which we used different algorithms to determine the next word between the Quiz and shinny demo.</li>
+<li><p>Algorithm: </p>
+
+<p>a. Start from 3-gram database, search w_3|(w_2, w_1)</p>
+
+<p>b. If there is a match list in step a., then  the choice of w_3 is the word with the highest probability among those matched list. If rank 1 choice occurred in multiple words, we just simply chose the 1st one on the list but this could be easily implemented for looking at an upper n-gram database.</p>
+
+<p>c. If there is no match list in step a. Repeat step a. with n = 2. If no words were searched, the result is &#39;unfound&#39;.</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Remark</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>The algorithm is strongly depend on the calling corpus database.</li>
+<li>The higher n-gram model started, the higher accuracy for a next word suggestion</li>
+<li>No correlations were considered between the previous sequencing words and the next predicted word</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Goal'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Notations'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Unsmoothed N-gram model'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Remark'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
